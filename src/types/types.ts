@@ -1,10 +1,5 @@
 import { decodedTextSpanIntersectsWith } from "typescript";
 
-// Class Types
-export interface TransactionListProp {
-    transactions: TransactionsState;
-}
-
 // Object Types
 export interface Transaction {
     id: string,

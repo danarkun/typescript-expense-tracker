@@ -1,7 +1,6 @@
 import { Transaction, ADD_TRANSACTION, DELETE_TRANSACTION, TransactionActionTypes, AppActions, ADD_USER, User, DELETE_USER, CLEAR_DATA } from '../types/types'
 import { Dispatch } from "react";
 import { RootState } from '../store';
-import { v4 as uuid } from "uuid";
 
 // ACTION CREATORS
 // Returns an ExpenseActionType (inferred by AddTransactionActionTypes)
@@ -32,11 +31,6 @@ export const clearData = (): AppActions => ({
 // WRAPPING ACTION CREATORS IN FUNCTIONS TO MAP TO DISPATCH
 export const startAddTransaction = ( transaction: Transaction) => {
     return (dispatch: Dispatch<AppActions>, getState:() => RootState) => {
-        
-        console.log("HITTING ");
-        // Set text and amount from transactionData parameter
-       
-
         // Pass our new id along with new transaction as an object to addTransaction(...) 
         dispatch(addTransaction(
             transaction

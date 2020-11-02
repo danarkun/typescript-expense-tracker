@@ -8,6 +8,7 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   background-color: #f7f7f7;
   display: flex;
@@ -17,16 +18,20 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: 'Lato', sans-serif;
+
+  height: 100%;
+  width: 100%;
 }
 
 .container {
   margin: 30px auto;
-  width: 350px;
+  width: 500px;
 }
 
 h1 {
   letter-spacing: 1px;
   margin: 0;
+  color: #3974f5;
 }
 
 h3 {
@@ -40,6 +45,20 @@ h4 {
   text-transform: uppercase;
 }
 
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  color: #333;
+  display: flex;
+  position: relative;
+  padding: 10px;
+  margin: 10px 0;
+}
+
 .inc-exp-container {
   background-color: #fff;
   box-shadow: var(--box-shadow);
@@ -49,13 +68,32 @@ h4 {
   margin: 20px 0;
 }
 
-.inc-exp-container > div {
+.inc-exp-container>div {
   flex: 1;
   text-align: center;
 }
 
-.inc-exp-container > div:first-of-type {
+.inc-exp-container>div:first-of-type {
   border-right: 1px solid #dedede;
+}
+
+.homeHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+#homeHeader>div {
+  flex: 1;
+}
+
+#clearData {
+  cursor: pointer;
+  background-color: #e74c3c;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 2px 5px;
 }
 
 .money {
@@ -87,9 +125,13 @@ input[type='number'] {
   width: 100%;
 }
 
+input[type=text]:focus {
+  background-color: lightgray;
+}
+
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #3974f5;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -98,6 +140,20 @@ input[type='number'] {
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+}
+
+#clearData {
+  width: 200px;
+  height: 75px;
+}
+
+.blocked {
+  background-color: rgb(204, 204, 204);
+  cursor: not-allowed;
+}
+
+.deleteButton {
+  width: 200px;
 }
 
 .btn:focus,
@@ -109,6 +165,19 @@ input[type='number'] {
   list-style-type: none;
   padding: 0;
   margin-bottom: 40px;
+}
+
+.clickableList {
+  transition: 0.3s;
+}
+
+.clickableList:hover {
+  cursor: pointer;
+  background-color: rgb(204, 204, 204);
+}
+
+.MuiDataGrid-cell:hover {
+  cursor: pointer;
 }
 
 .list li {
@@ -146,12 +215,61 @@ input[type='number'] {
   transition: opacity 0.3s ease;
 }
 
-.list li:hover .delete-btn {
-  opacity: 1;
+div.totalTrans {
+  position: relative;
 }
 
-@media (max-width: 320px) {
-  .container {
-    width: 300px;
-  }
+div.totalTrans #display {
+  width: 25px;
+}
+
+.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.nav li {
+  float: left;
+  display: inline;
+  border-right: 1px solid #bbb;
+}
+
+.nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav li a:hover {
+  background-color: #111;
+}
+
+.nav .active {
+  background-color: #3974f5;
+}
+
+#fname.textInput {
+  padding: 8px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 300px;
+}
+
+#lname.textInput {
+  padding: 8px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 300px;
+}
+
+.component {
+  top: 1000px;
+  left: 50px;
 }

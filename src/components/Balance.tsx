@@ -1,5 +1,10 @@
 import React, { FC, useContext } from 'react';
-import { TransactionListProp, Transaction, TransactionsState } from '../types/types'
+import { Transaction, TransactionsState } from '../types/types'
+
+// Class Types
+export interface TransactionListProp {
+  transactions: TransactionsState;
+}
 
 export const Balance: FC<TransactionListProp> = (props) => {
   // States transaction list is passed to us as a prop
