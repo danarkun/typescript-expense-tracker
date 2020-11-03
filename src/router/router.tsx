@@ -5,6 +5,7 @@ import AddTransaction from "../components/AddTransaction";
 import AddUser from "../components/AddUser";
 import ClearForm from "../components/ClearForm";
 import Home from "../components/Home";
+import TransactionViewer from "../components/TransactionViewer";
 import UserViewer from "../components/UserViewer";
 
 
@@ -50,7 +51,7 @@ const AppRouter = () => (
                 <Route render={() => <Redirect to={{ pathname: "/Home" }} />} />
                 <Route path="/AddUser" component={AddUser} />
                 <Route path="/Home" component={Home} />
-                {/* <Route path="/TransactionViewer" component={TransactionViewer} /> */}
+                <Route path="/TransactionViewer" component={TransactionViewer} />
                 <Route path="/UserViewer" component={UserViewer} />
                 <Route path="/ClearForm" component={ClearForm} />
                 <Route path="/AddTransaction" component={AddTransaction} />

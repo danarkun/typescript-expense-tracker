@@ -34,7 +34,7 @@ export const Home = (props: Props, homePageState: HomePageState) => {
             <UserList userList={users} />
             <Balance transactions={transactions}/>
             <IncomeExpenses transactions={transactions} />
-            <TransactionList transactions={transactions} users={users} callback={props.startDeleteTransaction}/>
+            <TransactionList transactions={transactions} users={users}/>
         </div>
     )
 }

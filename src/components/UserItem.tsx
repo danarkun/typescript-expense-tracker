@@ -9,8 +9,7 @@ interface UserProps {
 }
 
 export const UserItem: FC<UserProps> = (props) => {
-    const { user } = props;
-    const { isList } = props;
+    const { user, isList } = props;
 
     function ResolveComponentType() {
         return isList ? <UserInList /> : <UserInSelect />
@@ -18,7 +17,6 @@ export const UserItem: FC<UserProps> = (props) => {
 
     const UserInList = () => {
         const history = useHistory();
-        console.log(user);
         return (
             <li value={user.id} className="clickableList" onClick={() => history.push("/UserViewer", user)}>
                  {/* {

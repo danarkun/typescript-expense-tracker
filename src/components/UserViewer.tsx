@@ -12,9 +12,9 @@ type Props = LinkStateProps & LinkDispatchProps;
 export const UserViewer:FC<Props> = (props) => {
     const location = useLocation();
     const [user, setUser] = useState(location.state);
-    const { startDeleteUser } = props;
-    const { transactions } = props;
-
+    
+    const { transactions, startDeleteUser } = props;
+    
     const history = useHistory();
 
     useEffect(() => {

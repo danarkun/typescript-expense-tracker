@@ -2,12 +2,10 @@ import { DataGrid } from '@material-ui/data-grid';
 import React, { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TransactionsState, Transaction, UsersState } from '../types/types';
-import { TransactionItem } from './TransactionItem';
 
 interface TransactionListProp {
   transactions: TransactionsState;
   users: UsersState;
-  callback(id: string): void;
 }
 
 export const TransactionList: FC<TransactionListProp> = (props) => {
@@ -29,7 +27,6 @@ export const TransactionList: FC<TransactionListProp> = (props) => {
 
   // Parse transactions time stamp to an easily readable date
   function GetDate(date: Date) {
-    console.log(date);
     const dateString = new Date(date);
     return `${dateString.toLocaleDateString()} ${dateString.toLocaleTimeString()}`
   }
