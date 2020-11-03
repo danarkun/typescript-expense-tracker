@@ -68,7 +68,7 @@ export const TransactionViewer: FC<Props> = (props) => {
             return <NavLink to={{
                 pathname: "/UserViewer",
                 search: `${user.id}`,
-                state: { detail: user }
+                state: user
             }}>{`${user.fname} ${user.lname}`}
             </NavLink>
         }

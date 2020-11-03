@@ -8,7 +8,7 @@ interface UserListProps {
 
 export const UserList:FC<UserListProps> = (props) => {
 
-    // foreach user is state.users, create a new user element and pass in the user
+    // foreach user is props.users, create a new user element and pass in the user
     return (
         <>
             <h3>Users</h3>

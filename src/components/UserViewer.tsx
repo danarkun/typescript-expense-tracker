@@ -27,6 +27,7 @@ export const UserViewer:FC<Props> = (props) => {
 
     function DeleteUser() {
         startDeleteUser(user.id)
+        history.push("./Home");
         // .then(() => {
         //     history.push("./Home");
         // })
