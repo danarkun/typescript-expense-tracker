@@ -5,13 +5,13 @@ import { RootState } from '../store';
 // ACTION CREATORS
 // Returns an ExpenseActionType (inferred by AddTransactionActionTypes)
 export const addTransaction = (transaction: Transaction): AppActions => ({
-        type: ADD_TRANSACTION,
-        payload: transaction
+    type: ADD_TRANSACTION,
+    payload: transaction
 });
 
 export const deleteTransaction = (id: string): AppActions => ({
-        type: DELETE_TRANSACTION,
-        payload: id
+    type: DELETE_TRANSACTION,
+    payload: id
 });
 
 export const addUser = (user: User): AppActions => ({
@@ -29,16 +29,27 @@ export const clearData = (): AppActions => ({
 })
 
 // WRAPPING ACTION CREATORS IN FUNCTIONS TO MAP TO DISPATCH
-export const startAddTransaction = ( transaction: Transaction) => {
-    return (dispatch: Dispatch<AppActions>, getState:() => RootState) => {
+export const startAddTransaction = (transaction: Transaction) =>
+{
+    return (dispatch: Dispatch<AppActions>, getState: () => RootState) => {
         // Pass our new id along with new transaction as an object to addTransaction(...) 
         dispatch(addTransaction(
             transaction
         ))
     }
 }
+// {
+//     return Promise.resolve(
+//         // (dispatch: Dispatch<AppActions>, getState:() => RootState) => {
+//         //     // Pass our new id along with new transaction as an object to addTransaction(...) 
+//         //     dispatch(addTransaction(
+//         //         transaction
+//         //     ))
+//         // }
+//     )
+// }
 
-export const startDeleteTransaction = ( id: string ) => {
+export const startDeleteTransaction = (id: string) => {
     return (dispatch: Dispatch<AppActions>, getState: () => RootState) => {
         dispatch(deleteTransaction(id));
     }

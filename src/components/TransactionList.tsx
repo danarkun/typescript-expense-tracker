@@ -4,7 +4,7 @@ import { TransactionItem } from './TransactionItem';
 
 interface TransactionListProp {
   transactions: TransactionsState;
-  callback: Function
+  callback(id: string): void
 }
 
 export const TransactionList:FC<TransactionListProp> = (props) => {

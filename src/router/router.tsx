@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link, NavLink, BrowserRouter, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import AddTransaction from "../components/AddTransaction";
+import ClearForm from "../components/ClearForm";
 import Home from "../components/Home";
 
 
@@ -49,7 +50,7 @@ const AppRouter = () => (
                 <Route path="/Home" component={Home} />
                 {/* <Route path="/TransactionViewer" component={TransactionViewer} /> */}
                 {/* <Route path="/UserViewer" component={UserViewer} /> */}
-                {/* <Route path="/ClearForm" component={ClearForm} /> */}
+                <Route path="/ClearForm" component={ClearForm} />
                 <Route path="/AddTransaction" component={AddTransaction} />
             </ContentColumn>
         </Switch>

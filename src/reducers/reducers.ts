@@ -1,4 +1,4 @@
-import { TransactionActionTypes, TransactionsState, ADD_TRANSACTION, DELETE_TRANSACTION } from '../types/types';
+import { TransactionActionTypes, TransactionsState, ADD_TRANSACTION, DELETE_TRANSACTION, CLEAR_DATA } from '../types/types';
 
 const initialState: TransactionsState = {
     transactions: [
@@ -22,6 +22,11 @@ export function transactionReducer(state = initialState, action: TransactionActi
             return {
                 ...state,
                 transactions: state.transactions.filter(t => t.id !== action.payload)
+            }
+        case CLEAR_DATA:
+            return {
+                ...state,
+                transactions: []
             }
         default:
             return state;

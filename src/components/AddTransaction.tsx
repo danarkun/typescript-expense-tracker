@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Dispatch, useState } from 'react'
 import { startAddTransaction } from '../actions/actions';
 import { connect } from "react-redux";
 import { AppActions, Transaction, TransactionsState } from '../types/types';
@@ -20,6 +20,13 @@ export const AddTransaction = (props: Props) => {
   const [text, setText] = useState('');
   const [amount, setAmount] = useState(0);
 
+  const [selectedUser, setSelected] = useState(false);
+  // Default to "select user" option
+  const [userID, setUser] = useState("default");
+
+  // const classes = useStyles();
+  const history = useHistory();
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -29,23 +36,16 @@ export const AddTransaction = (props: Props) => {
       amount: +amount
     }
     props.startAddTransaction(newTransaction)
-      // .then(() => {
-      //   history.push("./Home");
-      // })
-      // .then(() => {
-      //   ResetForm();
-      // })
-      // .catch((err) => {
-      //   console.error(`AddTransaction promise error: ${err}`);
-      // })
+    // .then(() => {
+    history.push("./Home");
+    // })
+    // .then(() => {
+    //   ResetForm();
+    // })
+    // .catch((err) => {
+    //   console.error(`AddTransaction promise error: ${err}`);
+    // })
   }
-
-  const [selectedUser, setSelected] = useState(false);
-  // Default to "select user" option
-  const [userID, setUser] = useState("default");
-
-  // const classes = useStyles();
-  const history = useHistory();
 
   function ResetForm() {
     setText('');
@@ -105,15 +105,8 @@ export const AddTransaction = (props: Props) => {
 
 interface LinkDispatchProps {
   startAddTransaction: (transaction: Transaction) => void;
+  // startAddTransactioning: (transaction: Transaction) => Promise<void>;
 }
-
-interface LinkStateProps {
-  transactions: TransactionsState;
-}
-
-const mapStateToProps = (state: RootState): LinkStateProps => ({
-  transactions: state.transactions
-});
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>): LinkDispatchProps => ({
   startAddTransaction: bindActionCreators(startAddTransaction, dispatch),
@@ -121,7 +114,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>): Link
 
 // Everyone importing this file takes this connect as opposed to AddTransaction itself
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps)(AddTransaction);
 
 // return (

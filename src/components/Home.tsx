@@ -6,6 +6,7 @@ import { startAddTransaction, startAddUser, startClearData, startDeleteTransacti
 import { RootState } from "../store/index";
 import { AppActions, Transaction, TransactionsState, User } from "../types/types";
 import { Balance } from "./Balance";
+import { IncomeExpenses } from "./IncomeExpenses";
 import { TransactionList } from "./TransactionList";
 
 
@@ -29,6 +30,7 @@ export const Home = (props: Props, homePageState: HomePageState) => {
         <div>
             <h1>Expenses Page</h1>
             <Balance transactions={transactions}/>
+            <IncomeExpenses transactions={transactions} />
             <TransactionList transactions={transactions} callback={props.startDeleteTransaction}/>
         </div>
     )

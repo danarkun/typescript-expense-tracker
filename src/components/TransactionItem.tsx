@@ -3,7 +3,7 @@ import { Transaction } from '../types/types';
 
 interface TransactionItemProp {
   transaction: Transaction;
-  callback: Function;
+  callback(id: string): void;
 }
 
 export const TransactionItem: FC<TransactionItemProp> = (props) => {
