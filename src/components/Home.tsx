@@ -4,10 +4,11 @@ import { bindActionCreators } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { startAddTransaction, startAddUser, startClearData, startDeleteTransaction, startDeleteUser } from '../actions/actions';
 import { RootState } from "../store/index";
-import { AppActions, Transaction, TransactionsState, User } from "../types/types";
+import { AppActions, Transaction, TransactionsState, User, UsersState } from "../types/types";
 import { Balance } from "./Balance";
 import { IncomeExpenses } from "./IncomeExpenses";
 import { TransactionList } from "./TransactionList";
+import { UserList } from "./UserList";
 
 
 interface HomePageProps {
@@ -25,13 +26,15 @@ type Props = HomePageProps & LinkDispatchProps & LinkStateProps;
 
 export const Home = (props: Props, homePageState: HomePageState) => {    
     const { transactions } = props;
+    const { users } = props;
 
     return (
-        <div>
+        <div className="container">
             <h1>Expenses Page</h1>
+            <UserList userList={users} />
             <Balance transactions={transactions}/>
             <IncomeExpenses transactions={transactions} />
-            <TransactionList transactions={transactions} callback={props.startDeleteTransaction}/>
+            <TransactionList transactions={transactions} users={users} callback={props.startDeleteTransaction}/>
         </div>
     )
 }
@@ -39,6 +42,7 @@ export const Home = (props: Props, homePageState: HomePageState) => {
 // Plain object containing the data our component needs
 interface LinkStateProps {
     transactions: TransactionsState;
+    users: UsersState;
 }
 
 interface LinkDispatchProps {
@@ -51,7 +55,8 @@ interface LinkDispatchProps {
 
 // Called everytime store changes, and updates the local props (in this case transactions used in DOM) to the updated value in the updated store
 const mapStateToProps = (state: RootState, ownProps: HomePageProps): LinkStateProps => ({
-    transactions: state.transactions
+    transactions: state.transactions,
+    users: state.users
 });
 
 // bindActionCreators -> binds action creator functions to be able to call dispatch directly

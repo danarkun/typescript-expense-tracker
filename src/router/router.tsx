@@ -2,8 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link, NavLink, BrowserRouter, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import AddTransaction from "../components/AddTransaction";
+import AddUser from "../components/AddUser";
 import ClearForm from "../components/ClearForm";
 import Home from "../components/Home";
+import UserViewer from "../components/UserViewer";
 
 
 const ContentColumn = styled.div`
@@ -46,10 +48,10 @@ const AppRouter = () => (
                     <Redirect exact from="/" to="/Home" />
                 )} />
                 <Route render={() => <Redirect to={{ pathname: "/Home" }} />} />
-                {/* <Route path="/AddUser" component={AddUser} /> */}
+                <Route path="/AddUser" component={AddUser} />
                 <Route path="/Home" component={Home} />
                 {/* <Route path="/TransactionViewer" component={TransactionViewer} /> */}
-                {/* <Route path="/UserViewer" component={UserViewer} /> */}
+                <Route path="/UserViewer" component={UserViewer} />
                 <Route path="/ClearForm" component={ClearForm} />
                 <Route path="/AddTransaction" component={AddTransaction} />
             </ContentColumn>

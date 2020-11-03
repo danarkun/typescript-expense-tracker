@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { AppActions } from '../types/types';
-import { transactionReducer } from '../reducers/reducers';
+import { transactionReducer, userReducer } from '../reducers/reducers';
 
 const rootReducer = combineReducers({
-    transactions: transactionReducer
+    transactions: transactionReducer,
+    users: userReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

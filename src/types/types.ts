@@ -2,7 +2,9 @@
 export interface Transaction {
     id: string,
     text: string,
-    amount: number
+    amount: number,
+    user: string
+    timeStamp: Date
 }
 
 export interface User {
@@ -15,6 +17,10 @@ export interface User {
 
 export interface TransactionsState {
     transactions: Transaction[];
+}
+
+export interface UsersState {
+    users: User[];
 }
 
 // Action Types
@@ -48,6 +54,8 @@ export interface ClearDataAction {
     type: typeof CLEAR_DATA
 }
 
-export type TransactionActionTypes = AddTransactionAction | DeleteTransactionAction | AddUserAction | DeleteUserAction | ClearDataAction;
+export type TransactionActionTypes = AddTransactionAction | DeleteTransactionAction | ClearDataAction;
 
-export type AppActions = TransactionActionTypes;
+export type UserActionTypes = AddUserAction | DeleteUserAction;
+
+export type AppActions = TransactionActionTypes | UserActionTypes;

@@ -1,7 +1,7 @@
 import React, { Dispatch, useState } from 'react'
 import { startAddTransaction } from '../actions/actions';
 import { connect } from "react-redux";
-import { AppActions, Transaction, TransactionsState } from '../types/types';
+import { AppActions, Transaction, TransactionsState, User, UsersState } from '../types/types';
 import { ThunkDispatch } from 'redux-thunk';
 import { bindActionCreators } from 'redux';
 import { v4 as uuid } from "uuid";
@@ -12,19 +12,30 @@ import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import Select from '@material-ui/core/Select/Select';
 import TextField from '@material-ui/core/TextField/TextField';
 import { useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
 
 
-type Props = LinkDispatchProps;
+type Props = LinkStateProps & LinkDispatchProps;
 
 export const AddTransaction = (props: Props) => {
   const [text, setText] = useState('');
   const [amount, setAmount] = useState(0);
-
   const [selectedUser, setSelected] = useState(false);
   // Default to "select user" option
   const [userID, setUser] = useState("default");
 
-  // const classes = useStyles();
+
+  const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(0),
+    },
+  }));
+
+  const classes = useStyles();
   const history = useHistory();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +44,9 @@ export const AddTransaction = (props: Props) => {
     const newTransaction = {
       id: uuid(),
       text,
-      amount: +amount
+      amount: +amount,
+      user: userID,
+      timeStamp: new Date()
     }
     props.startAddTransaction(newTransaction)
     // .then(() => {
@@ -52,14 +65,10 @@ export const AddTransaction = (props: Props) => {
     setAmount(parseInt(''));
   }
 
-  function generateID() {
-    return Math.floor(Math.random() * 1000000)
+  function SelectUser(user: string) {
+    setUser(user);
+    setSelected(true);
   }
-
-  // function SelectUser(user) {
-  //     setUser(user);
-  //     setSelected(true);
-  // }
 
   return (
     <div className="component">
@@ -78,12 +87,12 @@ export const AddTransaction = (props: Props) => {
           <label htmlFor="user"><b>Assign User</b></label><br />
 
 
-          {/* <FormControl variant="outlined" className={classes.formControl}>
+          <FormControl variant="outlined" className={classes.formControl}>
             <Select
               id="user"
               name="user"
               value={userID}
-              onChange={e => SelectUser(e.target.value)}
+              onChange={(event: React.ChangeEvent<{ value: unknown }>) => { SelectUser(event.target.value as string) }}
               displayEmpty
               className={classes.selectEmpty}
               inputProps={{ "aria-label": "Without label" }}
@@ -91,16 +100,23 @@ export const AddTransaction = (props: Props) => {
             >
               <MenuItem value="default" disabled>
                 Select User
-                            </MenuItem>
+              </MenuItem>
+              {props.userList.users.map((user) =>
+                <MenuItem key={user.id} value={user.id}>{user.fname} {user.lname}</MenuItem>)}
             </Select>
             <FormHelperText>User</FormHelperText>
-          </FormControl> */}
+          </FormControl>
+
+
         </div>
-        <button className="btn">Add transaction</button>
-        {/* <input type="submit" id="subButton" className={`${userList.length === 0 ? "blocked" : ""} btn`} value={userList.length === 0 ? "Add Atleast One User" : "Add transaction"}></input> */}
+        <input type="submit" id="subButton" className={`${props.userList.users.length === 0 ? "blocked" : ""} btn`} value={props.userList.users.length === 0 ? "Add Atleast One User" : "Add transaction"}></input>
       </form>
     </div>
   )
+}
+
+interface LinkStateProps {
+  userList: UsersState
 }
 
 interface LinkDispatchProps {
@@ -108,30 +124,15 @@ interface LinkDispatchProps {
   // startAddTransactioning: (transaction: Transaction) => Promise<void>;
 }
 
+const mapStateToProps = (state: RootState): LinkStateProps => ({
+  userList: state.users
+})
+
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>): LinkDispatchProps => ({
   startAddTransaction: bindActionCreators(startAddTransaction, dispatch),
 })
 
 // Everyone importing this file takes this connect as opposed to AddTransaction itself
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps)(AddTransaction);
-
-// return (
-//   <>
-//     <h3>Add new transaction</h3>
-//     <form onSubmit={onSubmit}>
-//       <div className="form-control">
-//         <label htmlFor="text">Text</label>
-//         <input type="text" value={text} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)} placeholder="Enter text..." />
-//       </div>
-//       <div className="form-control">
-//         <label htmlFor="amount"
-//         >Amount <br />
-//                     (negative - expense, positive - income)</label>
-//         <input type="number" value={amount} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseInt(e.target.value))} placeholder="Enter amount..." />
-//       </div>
-//       <button className="btn">Add transaction</button>
-//     </form>
-//   </>
-// )
