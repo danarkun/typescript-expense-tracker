@@ -7,6 +7,7 @@ import { startDeleteTransaction } from '../actions/actions';
 import { RootState } from '../store';
 import { Transaction, TransactionsState, User, UsersState } from '../types/types';
 import { TransactionItem } from './TransactionItem';
+import { JsxElement } from 'typescript';
 
 type Props = LinkStateProps & LinkDispatchProps;
 
@@ -29,8 +30,9 @@ export const TransactionViewer: FC<Props> = (props) => {
         }
     }, [location])
 
-    function DeleteTransaction() {
+    function DeleteTransaction(): void {
         startDeleteTransaction(transaction.id);
+        history.push("./Home");
         // .then(() => {
         //     history.push("./Home");
         // })
@@ -43,7 +45,7 @@ export const TransactionViewer: FC<Props> = (props) => {
         return;
     }
 
-    function GetComponentToDraw() {
+    function GetComponentToDraw(): JSX.Element {
         // If coming from clicking Transaction Viewer, need to select a transaction from drop down
         if (location.search == '?transaction') {
             if (transaction == null)
@@ -56,9 +58,7 @@ export const TransactionViewer: FC<Props> = (props) => {
         }
     }
 
-
-
-    function GetUserLink() {
+    function GetUserLink(): JSX.Element {
         const user: User | undefined = users.users.find(x => x.id == transaction.user);
 
         if (user == null) {
@@ -74,14 +74,14 @@ export const TransactionViewer: FC<Props> = (props) => {
         }
     }
 
-    function SetSelectedTransaction(transaction: Transaction) {
-        let ret = transactions.transactions.find(t => t.id == transaction.id)
-        history.push("/TransactionViewer", ret);
+    function SetSelectedTransaction(transactionId: string) {
+        let ret = transactions.transactions.find(t => t.id == transactionId)
+        history.push("/TransactionViewer?transaction", ret);
     }
 
     const TransactionDropDown = () => {
         return (
-            <select value={transaction} defaultValue="">
+            <select value={transaction} defaultValue="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => { SetSelectedTransaction(e.target.value as string) }}>
                 <option value="" disabled>Select Transaction</option>
                 {transactions.transactions.map(t => (<TransactionItem key={t.id} transaction={t} />))}
             </select>

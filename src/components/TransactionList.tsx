@@ -16,7 +16,7 @@ export const TransactionList: FC<TransactionListProp> = (props) => {
   const history = useHistory();
 
   function OnTransactionClick(transaction: Transaction) {
-    history.push("/TransactionViewer", transaction);
+    history.push("/TransactionViewer?transaction", transaction);
   }
 
   // Get user first and last name from userID

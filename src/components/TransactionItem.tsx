@@ -12,6 +12,6 @@ export const TransactionItem: FC<TransactionItemProp> = (props) => {
   const { transaction } = props;
 
   return (
-    <option value={transaction.text}>{transaction.text}</option>
+    <option value={transaction.id}>{transaction.text}</option>
   )
 }
