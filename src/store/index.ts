@@ -5,7 +5,8 @@ import { transactionReducer, userReducer } from '../reducers/reducers';
 
 const rootReducer = combineReducers({
     transactions: transactionReducer,
-    users: userReducer
+    users: userReducer,
+    // generic: dataReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

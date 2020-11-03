@@ -23,6 +23,8 @@ export interface UsersState {
     users: User[];
 }
 
+export type DataState = TransactionsState & UsersState;
+
 // Action Types
 export const ADD_TRANSACTION = "ADD_TRANSACTION";
 export const DELETE_TRANSACTION = "DELETE_TRANSACTION";
@@ -56,6 +58,8 @@ export interface ClearDataAction {
 
 export type TransactionActionTypes = AddTransactionAction | DeleteTransactionAction | ClearDataAction;
 
-export type UserActionTypes = AddUserAction | DeleteUserAction;
+export type UserActionTypes = AddUserAction | DeleteUserAction | ClearDataAction;
 
-export type AppActions = TransactionActionTypes | UserActionTypes;
+export type GenericActionTypes = ClearDataAction;
+
+export type AppActions = TransactionActionTypes | UserActionTypes | GenericActionTypes;

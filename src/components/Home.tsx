@@ -6,6 +6,7 @@ import { startAddTransaction, startAddUser, startClearData, startDeleteTransacti
 import { RootState } from "../store/index";
 import { AppActions, Transaction, TransactionsState, User, UsersState } from "../types/types";
 import { Balance } from "./Balance";
+import { Header } from "./Header";
 import { IncomeExpenses } from "./IncomeExpenses";
 import { TransactionList } from "./TransactionList";
 import { UserList } from "./UserList";
@@ -30,7 +31,7 @@ export const Home = (props: Props, homePageState: HomePageState) => {
 
     return (
         <div className="container">
-            <h1>Expenses Page</h1>
+            <Header />
             <UserList userList={users} />
             <Balance transactions={transactions}/>
             <IncomeExpenses transactions={transactions} />

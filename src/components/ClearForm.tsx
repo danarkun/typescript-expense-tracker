@@ -37,6 +37,7 @@ interface LinkDispatchProps {
     startClearData: () => void;
 }
 
+// Binds startClearData to dispatch
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>): LinkDispatchProps => ({
     startClearData: bindActionCreators(startClearData, dispatch)
 });
