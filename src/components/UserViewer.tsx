@@ -17,6 +17,8 @@ export const UserViewer:FC<Props> = (props) => {
     
     const history = useHistory();
 
+    const { emaisl } = user;
+
     useEffect(() => {
         // Get user that we've been passed from clicked User component
         setUser(location.state);
@@ -53,7 +55,7 @@ export const UserViewer:FC<Props> = (props) => {
             <br />
 
             <p><b>User Name: </b>{user.fname} {user.lname}</p>
-            <p><b>User Email: </b>{user.email}</p>
+            <p><b>User Email: </b><a href="mailto:">{user.email}</a></p>
             <p><b>User added at: </b>{user.timeStamp == undefined ? "Unknown time" : user.timeStamp.toString()}</p>
             <p><b>User expenditure: </b>${UserExpenses()}</p>
             <button className="btn deleteButton" onClick={() => DeleteUser()}>DELETE USER</button>

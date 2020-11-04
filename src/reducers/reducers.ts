@@ -1,9 +1,9 @@
-import { TransactionActionTypes, TransactionsState, UsersState, ADD_TRANSACTION, DELETE_TRANSACTION, CLEAR_DATA, UserActionTypes, ADD_USER, DELETE_USER, GenericActionTypes, DataState } from '../types/types';
+import { TransactionActionTypes, TransactionsState, UsersState, ADD_TRANSACTION, DELETE_TRANSACTION, CLEAR_DATA, UserActionTypes, ADD_USER, DELETE_USER } from '../types/types';
 
 const initialTransactionState: TransactionsState = {
     transactions: [
         {
-            id: "1",
+            id: "1678",
             text: "First Transaction",
             amount: 100,
             user: "1",
@@ -24,12 +24,7 @@ const initialUsersState: UsersState = {
     ]
 }
 
-const initialDataState: DataState = {
-    users: [],
-    transactions: []
-}
-
-// Reducer takes in a state and action (type of which is any of the defined transactions types) and returns a new TransactionsState
+// Reducer takes in a state (current TransactionsState) and action (type of which is any of the defined transactions types) and returns a new TransactionsState
 export function transactionReducer(state = initialTransactionState, action: TransactionActionTypes): TransactionsState {
     switch (action.type) {
         case ADD_TRANSACTION:
@@ -73,16 +68,3 @@ export function userReducer(state = initialUsersState, action: UserActionTypes):
             return state;
     }
 }
-
-// export function dataReducer(state = initialDataState, action: GenericActionTypes): DataState {
-//     switch (action.type) {
-//         case CLEAR_DATA:
-//             return {
-//                 ...state,
-//                 users: [],
-//                 transactions: []
-//             }
-//         default:
-//             return state;
-//     }
-// }
