@@ -22,8 +22,8 @@ export const AddTransaction = (props: Props) => {
   const [amount, setAmount] = useState(0);
   const [selectedUser, setSelected] = useState(false);
   // Default to "select user" option
-  const [userID, setUser] = useState("default");
-  const [transactionType, setType] = useState('');
+  const [userID, setUser] = useState('default');
+  const [transactionType, setType] = useState('default');
 
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -102,8 +102,8 @@ export const AddTransaction = (props: Props) => {
             required
             >
               <MenuItem value="default" disabled>Select Type</MenuItem>
-              <MenuItem value="Expense">Expense</MenuItem>
               <MenuItem value="Income">Income</MenuItem>
+              <MenuItem value="Expense">Expense</MenuItem>
             </Select>
           </FormControl>
         </div>
