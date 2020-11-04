@@ -1,4 +1,4 @@
-import { TransactionActionTypes, TransactionsState, UsersState, ADD_TRANSACTION, DELETE_TRANSACTION, CLEAR_DATA, UserActionTypes, ADD_USER, DELETE_USER } from '../types/types';
+import { TransactionActionTypes, TransactionsState, UsersState, ADD_TRANSACTION, DELETE_TRANSACTION, CLEAR_DATA, UserActionTypes, ADD_USER, DELETE_USER, TransactionType } from '../types/types';
 
 const initialTransactionState: TransactionsState = {
     transactions: [
@@ -7,7 +7,7 @@ const initialTransactionState: TransactionsState = {
             text: "First Transaction",
             amount: 100,
             user: "1",
-            timeStamp: new Date()
+            timeStamp: new Date(),
         }
     ]
 }

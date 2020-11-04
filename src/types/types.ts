@@ -1,10 +1,17 @@
+import { type } from "os";
+
 // Object Types
 export interface Transaction {
     id: string,
     text: string,
     amount: number,
-    user: string
-    timeStamp: Date
+    user: string,
+    timeStamp: Date,
+}
+
+export enum TransactionType {
+    Expense,
+    Income
 }
 
 export interface User {

@@ -1,7 +1,7 @@
-import React, { Dispatch, useState } from 'react'
+import React, { useState } from 'react'
 import { startAddTransaction } from '../actions/actions';
 import { connect } from "react-redux";
-import { AppActions, Transaction, TransactionsState, User, UsersState } from '../types/types';
+import { AppActions, Transaction, TransactionsState, TransactionType, User, UsersState } from '../types/types';
 import { ThunkDispatch } from 'redux-thunk';
 import { bindActionCreators } from 'redux';
 import { v4 as uuid } from "uuid";
@@ -23,7 +23,7 @@ export const AddTransaction = (props: Props) => {
   const [selectedUser, setSelected] = useState(false);
   // Default to "select user" option
   const [userID, setUser] = useState("default");
-
+  const [transactionType, setType] = useState('');
 
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -44,7 +44,7 @@ export const AddTransaction = (props: Props) => {
     const newTransaction = {
       id: uuid(),
       text,
-      amount: +amount,
+      amount: +GetAmountFromType(amount, GetTypeEnum(transactionType)),
       user: userID,
       timeStamp: new Date()
     }
@@ -60,9 +60,13 @@ export const AddTransaction = (props: Props) => {
     // })
   }
 
-  function ResetForm() {
-    setText('');
-    setAmount(parseInt(''));
+  // Determine whether to deduct or add amount to total balance (expense: negative, income: positive)
+  function GetAmountFromType(amount: number, type: TransactionType): number {
+    return type == TransactionType.Income ? amount : -amount;
+  }
+  
+  function GetTypeEnum(type: string): TransactionType {
+    return TransactionType[type as keyof typeof TransactionType];
   }
 
   function SelectUser(user: string) {
@@ -81,8 +85,29 @@ export const AddTransaction = (props: Props) => {
         <div className="form-control">
           <label htmlFor="amount"
           ><b>Amount</b> <br />(Negative: expense, Positive: income)</label><br />
-          <TextField variant="outlined" type="number" value={amount} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseInt(e.target.value))} placeholder="Enter amount..." required />
+          <TextField variant="outlined" type="number" value={amount} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))} placeholder="Enter amount..." required />
         </div>
+
+        <div className="formcontrol">
+          <label htmlFor="type"><b>Transaction Type</b></label><br />
+          <FormControl variant="outlined" className={classes.formControl}>
+            <Select
+            id="type"
+            name="type"
+            value={transactionType}
+            onChange={(e: React.ChangeEvent<{ value: unknown }>) => { setType(e.target.value as string) }}
+            displayEmpty
+            className={classes.selectEmpty}
+            inputProps={{ "aria-label": "Without label"}}
+            required
+            >
+              <MenuItem value="default" disabled>Select Type</MenuItem>
+              <MenuItem value="Expense">Expense</MenuItem>
+              <MenuItem value="Income">Income</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+
         <div className="formcontrol">
           <label htmlFor="user"><b>Assign User</b></label><br />
 
