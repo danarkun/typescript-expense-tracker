@@ -176,8 +176,22 @@ input[type=text]:focus {
   background-color: rgb(204, 204, 204);
 }
 
-.MuiDataGrid-cell:hover {
+.MuiDataGrid-row {
+  transition: 0.3s;
+}
+
+.MuiDataGrid-row:hover {
   cursor: pointer;
+  background-color: rgb(204, 204, 204) !important;
+}
+
+.MuiDataGrid-colCell {
+  transition: 0.3s;
+}
+
+.MuiDataGrid-colCell:hover {
+  cursor: pointer;
+  background-color: rgb(204, 204, 204);
 }
 
 .list li {

@@ -24,13 +24,13 @@ export const IncomeExpenses:FC<IncomeExpensesProps> = (props) => {
 }
 
 function CalculateIncome(transactions: TransactionsState) {
-    const amounts = transactions.transactions.map(transaction => transaction.amount > 0 ? transaction.amount : 0);
-    const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
+    const amounts: number[] = transactions.transactions.map(transaction => transaction.amount > 0 ? transaction.amount : 0);
+    const total: string = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
     return total;
 }
 
 function CalculateExpsenses(transactions: TransactionsState) {
-    const amounts = transactions.transactions.map(transaction => transaction.amount < 0 ? transaction.amount : 0);
-    const total = Math.abs(parseInt(amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)));
+    const amounts: number[] = transactions.transactions.map(transaction => transaction.amount < 0 ? transaction.amount : 0);
+    const total: number = Math.abs(parseInt(amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)));
     return total;
 }
