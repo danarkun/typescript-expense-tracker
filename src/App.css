@@ -180,6 +180,26 @@ input[type=text]:focus {
   transition: 0.3s;
 }
 
+/*Expense Row*/
+.MuiDataGrid-cell.expense {
+  background-color: rgb(255, 182, 182) !important;
+}
+
+/*Income Row*/
+.MuiDataGrid-row.income {
+  background-color: rgb(206, 252, 195) !important;
+}
+
+/*Expense Row Hover*/
+.MuiDataGrid-cell.expense:hover {
+  background-color: rgb(245, 108, 108) !important;
+}
+
+/*Income Row Hover*/
+.MuiDataGrid-row.income:hover {
+  background-color: rgb(113, 248, 131) !important;
+}
+
 .MuiDataGrid-row:hover {
   cursor: pointer;
   background-color: rgb(204, 204, 204) !important;

@@ -1,6 +1,7 @@
+import { getData } from '../helpers/localStorage';
 import { TransactionActionTypes, TransactionsState, UsersState, ADD_TRANSACTION, DELETE_TRANSACTION, CLEAR_DATA, UserActionTypes, ADD_USER, DELETE_USER, TransactionType } from '../types/types';
 
-const initialTransactionState: TransactionsState = {
+const initialTransactionStateObj: TransactionsState = {
     transactions: [
         {
             id: "1678",
@@ -12,7 +13,7 @@ const initialTransactionState: TransactionsState = {
     ]
 }
 
-const initialUsersState: UsersState = {
+const initialUsersStateObj: UsersState = {
     users: [
         {
             id: "1",
@@ -23,6 +24,9 @@ const initialUsersState: UsersState = {
         }
     ]
 }
+
+const initialTransactionState: TransactionsState = getData('transactionData') || initialTransactionStateObj;
+const initialUsersState: UsersState = getData('userData') || initialUsersStateObj;
 
 // Reducer takes in a state (current TransactionsState) and action (type of which is any of the defined transactions types) and returns a new TransactionsState
 export function transactionReducer(state = initialTransactionState, action: TransactionActionTypes): TransactionsState {

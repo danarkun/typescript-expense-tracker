@@ -111,7 +111,6 @@ export const AddTransaction = (props: Props) => {
         <div className="formcontrol">
           <label htmlFor="user"><b>Assign User</b></label><br />
 
-
           <FormControl variant="outlined" className={classes.formControl}>
             <Select
               id="user"
@@ -131,8 +130,6 @@ export const AddTransaction = (props: Props) => {
             </Select>
             <FormHelperText>User</FormHelperText>
           </FormControl>
-
-
         </div>
         <input type="submit" id="subButton" className={`${props.userList.users.length === 0 ? "blocked" : ""} btn`} value={props.userList.users.length === 0 ? "Add Atleast One User" : "Add transaction"}></input>
       </form>

@@ -19,11 +19,6 @@ export const UserItem: FC<UserProps> = (props) => {
         const history = useHistory();
         return (
             <li value={user.id} className="clickableList" onClick={() => history.push("/UserViewer", user)}>
-                 {/* {
-                pathname: "/UserViewer",
-                search: `${user.id}`,
-                state: { detail: user }
-            } */}
                 {user.fname} {user.lname} <span>{user.email}</span>
             </li>
         )

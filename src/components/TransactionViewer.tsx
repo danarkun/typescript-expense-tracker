@@ -5,9 +5,9 @@ import { AnyAction, bindActionCreators } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { startDeleteTransaction } from '../actions/actions';
 import { RootState } from '../store';
-import { Transaction, TransactionsState, User, UsersState } from '../types/types';
+import { TransactionsState, User, UsersState } from '../types/types';
 import { TransactionItem } from './TransactionItem';
-import { JsxElement } from 'typescript';
+import { FormControl, Select, MenuItem, FormHelperText, makeStyles } from '@material-ui/core';
 
 type Props = LinkStateProps & LinkDispatchProps;
 
@@ -18,12 +18,22 @@ export const TransactionViewer: FC<Props> = (props) => {
     const location = useLocation();
     const [transaction, setTransaction] = useState(VerifyState());
 
+    const useStyles = makeStyles((theme) => ({
+        formControl: {
+            margin: theme.spacing(1),
+            minWidth: 200,
+        },
+        selectEmpty: {
+            marginTop: theme.spacing(0),
+        },
+    }));
 
+    const classes = useStyles();
     const history = useHistory();
 
     useEffect(() => {
         // Get transaction that we've been passed from clicked Transaction component
-        setTransaction(VerifyState);
+        setTransaction(VerifyState());
 
         return () => {
             // Cleanup code
@@ -81,10 +91,28 @@ export const TransactionViewer: FC<Props> = (props) => {
 
     const TransactionDropDown = () => {
         return (
-            <select value={transaction} defaultValue="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => { SetSelectedTransaction(e.target.value as string) }}>
-                <option value="" disabled>Select Transaction</option>
-                {transactions.transactions.map(t => (<TransactionItem key={t.id} transaction={t} />))}
-            </select>
+            <div>
+                <FormControl variant="outlined" className={classes.formControl}>
+                    <Select
+                        id="user"
+                        name="user"
+                        value={transaction}
+                        onChange={(event: React.ChangeEvent<{ value: unknown }>) => { SetSelectedTransaction(event.target.value as string) }}
+                        displayEmpty
+                        className={classes.selectEmpty}
+                        inputProps={{ "aria-label": "Without label" }}
+                        required
+                        defaultValue="default"
+                    >
+                        <MenuItem value="default" disabled>
+                            Select Transaction
+              </MenuItem>
+                        {transactions.transactions.map(t =>
+                            <MenuItem key={t.id} value={t.id}><b>{t.text}</b></MenuItem>)}
+                    </Select>
+                    <FormHelperText>User</FormHelperText>
+                </FormControl>
+            </div>
         )
     }
 
