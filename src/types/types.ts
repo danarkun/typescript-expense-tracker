@@ -1,4 +1,7 @@
-import { type } from "os";
+// Local Storage Identifies
+
+export const TRANSACTION_DATA = "TRANSACTION_DATA";
+export const USER_DATA = "USER_DATA";
 
 // Object Types
 export interface Transaction {
