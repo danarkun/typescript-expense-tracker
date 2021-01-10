@@ -1,4 +1,4 @@
-// Local Storage Identifies
+// Local Storage Identifiers
 
 export const TRANSACTION_DATA = "TRANSACTION_DATA";
 export const USER_DATA = "USER_DATA";

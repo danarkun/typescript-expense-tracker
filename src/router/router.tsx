@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Link, NavLink, BrowserRouter, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch,  NavLink, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import AddTransaction from "../components/AddTransaction";
 import AddUser from "../components/AddUser";
@@ -51,7 +51,9 @@ const AppRouter = () => (
                 <Route render={() => <Redirect to={{ pathname: "/Home" }} />} />
                 <Route path="/AddUser" component={AddUser} />
                 <Route path="/Home" component={Home} />
-                <Route path="/TransactionViewer" component={TransactionViewer} />
+                <Route path="/TransactionViewer">
+                    <TransactionViewer/>
+                </Route>
                 <Route path="/UserViewer" component={UserViewer} />
                 <Route path="/ClearForm" component={ClearForm} />
                 <Route path="/AddTransaction" component={AddTransaction} />

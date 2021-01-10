@@ -1,4 +1,4 @@
-import { Transaction, ADD_TRANSACTION, DELETE_TRANSACTION, TransactionActionTypes, AppActions, ADD_USER, User, DELETE_USER, CLEAR_DATA, TRANSACTION_DATA } from '../types/types'
+import { Transaction, ADD_TRANSACTION, DELETE_TRANSACTION, AppActions, ADD_USER, User, DELETE_USER, CLEAR_DATA } from '../types/types'
 import { Dispatch } from "react";
 import { RootState } from '../store';
 

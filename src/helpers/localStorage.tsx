@@ -1,5 +1,3 @@
-import { TransactionsState, UsersState } from "../types/types";
-
 export const getData = (key: any): any => {
 	if (!localStorage || localStorage.getItem(key) == null) return undefined;
 

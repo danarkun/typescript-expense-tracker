@@ -4,7 +4,6 @@ import { AppActions, TransactionsState, TRANSACTION_DATA, USER_DATA } from '../t
 import { transactionReducer, userReducer } from '../reducers/reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { storeData, getData } from '../helpers/localStorage';
-import { UserList } from '../components/UserList';
 
 // Get persistant data from localStorage
 const persistantData = {
